@@ -4,75 +4,874 @@
   "title": "Ztraqto Audio 製品ページ（products/<URL名>.json）",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name"],
+  "required": [
+    "name"
+  ],
   "$defs": {
-    "text": { "type": "string" },
+    "text": {
+      "type": "string"
+    },
     "image": {
       "type": "string",
       "description": "images/ から始まるリポジトリ内のパス（例: images/athena-qx/hero.webp）か、raw.githubusercontent.com / cdn.jsdelivr.net / booth.pximg.net の https URL。PNG・JPEG・WebP・AVIF・GIF（SVG は不可）",
       "pattern": "^(images/[A-Za-z0-9._/-]+\\.(png|jpe?g|webp|avif|gif)|https://(raw\\.githubusercontent\\.com|cdn\\.jsdelivr\\.net|booth\\.pximg\\.net)/.+)$"
     },
-    "link": { "type": "string", "description": "https:// の booth.pm / ztraqto.com（とそのサブドメイン）のURL。空ならリンクなし", "pattern": "^(|https://.+)$", "maxLength": 500 },
+    "link": {
+      "type": "string",
+      "description": "https:// の booth.pm / ztraqto.com（とそのサブドメイン）のURL。空ならリンクなし",
+      "pattern": "^(|https://.+)$",
+      "maxLength": 500
+    },
     "time": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "\"2026-12-01T00:00:00+09:00\"。時差を書かなければ日本時間（\"2026-12-01\" や \"2026-12-01T18:00\" も可）"
     },
-    "visual": { "enum": ["eq", "wave", "spectrum", "orbit"], "description": "画像がないときに描く動く絵" },
+    "visual": {
+      "enum": [
+        "eq",
+        "wave",
+        "spectrum",
+        "orbit"
+      ],
+      "description": "画像がないときに描く動く絵"
+    },
     "section": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
-          "enum": ["statement", "feature", "highlights", "stats", "gallery", "specs", "quote", "video", "cta"],
-          "description": "statement=大見出し（スクロールで文字が光る） / feature=特徴（画像か動く絵＋説明） / highlights=ポイント / stats=数字（カウントアップ） / gallery=ギャラリー（横スクロール） / specs=仕様表 / quote=引用 / video=YouTube / cta=購入の呼びかけ"
+          "enum": [
+            "statement",
+            "feature",
+            "highlights",
+            "stats",
+            "gallery",
+            "specs",
+            "quote",
+            "video",
+            "cta",
+            "showcase",
+            "comparison",
+            "points",
+            "offer"
+          ],
+          "description": "statement=大見出し（スクロールで文字が光る） / feature=特徴（画像か動く絵＋説明） / highlights=ポイント / stats=数字（カウントアップ） / gallery=ギャラリー（横スクロール） / specs=仕様表 / quote=引用 / video=YouTube / cta=購入の呼びかけ / showcase=紹介映像のように自動で動くアニメーション（プラグインの画面を描いて再生） / comparison=比較表（列ごとの値、○×は true / false） / points=アピールの箇条書き（番号付き、最初の項目を大きく） / offer=特別な提供の案内（Contributor 版など）"
         }
       },
       "allOf": [
-        { "if": { "properties": { "type": { "const": "statement" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "body": { "type": "string", "maxLength": 600 } }, "required": ["heading"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "feature" } } }, "then": { "properties": { "type": true, "eyebrow": { "type": "string", "maxLength": 40 }, "heading": { "type": "string", "maxLength": 120 }, "body": { "type": "string", "maxLength": 1200 }, "image": { "$ref": "#/$defs/image" }, "visual": { "$ref": "#/$defs/visual" }, "align": { "enum": ["left", "right"] } }, "required": ["heading"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "highlights" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "items": { "type": "array", "minItems": 1, "maxItems": 9, "items": { "type": "object", "properties": { "title": { "type": "string", "maxLength": 60 }, "body": { "type": "string", "maxLength": 300 } }, "required": ["title"], "additionalProperties": false } } }, "required": ["items"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "stats" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "items": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "object", "properties": { "value": { "type": "string", "maxLength": 12 }, "unit": { "type": "string", "maxLength": 16 }, "label": { "type": "string", "maxLength": 60 } }, "required": ["value"], "additionalProperties": false } } }, "required": ["items"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "gallery" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "images": { "type": "array", "minItems": 1, "maxItems": 12, "items": { "$ref": "#/$defs/image" } } }, "required": ["images"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "specs" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "rows": { "type": "array", "minItems": 1, "maxItems": 40, "items": { "type": "object", "properties": { "label": { "type": "string", "maxLength": 40 }, "value": { "type": "string", "maxLength": 200 } }, "required": ["label", "value"], "additionalProperties": false } } }, "required": ["rows"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "quote" } } }, "then": { "properties": { "type": true, "text": { "type": "string", "maxLength": 400 }, "author": { "type": "string", "maxLength": 80 } }, "required": ["text"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "video" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "youtube": { "type": "string", "pattern": "^[A-Za-z0-9_-]{11}$", "description": "YouTube の動画ID（11文字）" } }, "required": ["youtube"], "additionalProperties": false } },
-        { "if": { "properties": { "type": { "const": "cta" } } }, "then": { "properties": { "type": true, "heading": { "type": "string", "maxLength": 120 }, "body": { "type": "string", "maxLength": 400 } }, "required": ["heading"], "additionalProperties": false } }
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "statement"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 600
+              }
+            },
+            "required": [
+              "heading"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "feature"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "eyebrow": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 1200
+              },
+              "image": {
+                "$ref": "#/$defs/image"
+              },
+              "visual": {
+                "$ref": "#/$defs/visual"
+              },
+              "align": {
+                "enum": [
+                  "left",
+                  "right"
+                ]
+              }
+            },
+            "required": [
+              "heading"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "highlights"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 9,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 60
+                    },
+                    "body": {
+                      "type": "string",
+                      "maxLength": 300
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "stats"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 6,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 12
+                    },
+                    "unit": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 60
+                    }
+                  },
+                  "required": [
+                    "value"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "gallery"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "images": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 12,
+                "items": {
+                  "$ref": "#/$defs/image"
+                }
+              }
+            },
+            "required": [
+              "images"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "specs"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "rows": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 40,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "value": {
+                      "type": "string",
+                      "maxLength": 300
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "groups": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "見出しごとに分けた仕様（rows の代わり）",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 60
+                    },
+                    "rows": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 40,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string",
+                            "maxLength": 40
+                          },
+                          "value": {
+                            "type": "string",
+                            "maxLength": 300
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "value"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "rows"
+                ]
+              },
+              {
+                "required": [
+                  "groups"
+                ]
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "quote"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "text": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "author": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "video"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "youtube": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{11}$",
+                "description": "YouTube の動画ID（11文字）"
+              }
+            },
+            "required": [
+              "youtube"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "cta"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "more": {
+                "type": "string",
+                "maxLength": 30,
+                "description": "2つ目のボタンの文字。押すと仕様・比較表（最初の specs か comparison）へ移る"
+              }
+            },
+            "required": [
+              "heading"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "showcase"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "scenes": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 16,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "enum": [
+                        "title",
+                        "arch",
+                        "dynamics",
+                        "resonance",
+                        "multi",
+                        "tabs",
+                        "peaks",
+                        "pick",
+                        "bands",
+                        "phase",
+                        "languages",
+                        "performance",
+                        "outro"
+                      ],
+                      "description": "title=タイトル（サムネイルの絵に caption を名前、body をサブタイトルとして描く。最初に置く） / arch=フローティングアーチ / dynamics=アーチ外側のダイナミクス / resonance=レゾナンス抑制のアーチと点線 / multi=複数バンドのアーチ / tabs=インスタンスのタブと重ね表示 / peaks=ピークのラベル / pick=つまんで下げる / bands=64バンド / phase=位相モード / languages=6言語の切り替え / performance=CPU の実測値 / outro=締め（caption を名前、body を下に描く）。arch→dynamics→resonance と続けると、同じバンドのまま切れ目なくつながる"
+                    },
+                    "caption": {
+                      "type": "string",
+                      "maxLength": 60,
+                      "description": "字幕（大きい文字）"
+                    },
+                    "body": {
+                      "type": "string",
+                      "maxLength": 160,
+                      "description": "字幕の説明"
+                    },
+                    "seconds": {
+                      "type": "number",
+                      "minimum": 2,
+                      "maximum": 15,
+                      "description": "このシーンの長さ（秒、省略時 5）"
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 12,
+                      "description": "映像をクリックして開くアーチの外周（チャプター）に出す短い名前（省略時は場面ごとの既定の名前）"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "scenes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "comparison"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 600
+              },
+              "columns": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "items": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "description": "比べる製品の名前"
+              },
+              "highlight": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3,
+                "description": "強調する列（0 から数える。既定は 0）"
+              },
+              "groups": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 12,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 60
+                    },
+                    "rows": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 30,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string",
+                            "maxLength": 60
+                          },
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "oneOf": [
+                                {
+                                  "type": "string",
+                                  "maxLength": 120
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ]
+                            },
+                            "description": "columns と同じ数。true は○、false は―"
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "values"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 1200
+              }
+            },
+            "required": [
+              "columns",
+              "groups"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "points"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "body": {
+                      "type": "string",
+                      "maxLength": 400
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "offer"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": true,
+              "eyebrow": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "heading": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 800
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 600
+              },
+              "linkLabel": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "url": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "https の booth.pm・ztraqto.com・discord.gg・discord.com（linkLabel と両方あるとボタンが出る）"
+              }
+            },
+            "required": [
+              "heading"
+            ],
+            "additionalProperties": false
+          }
+        }
       ]
     }
   },
   "properties": {
-    "$schema": { "type": "string" },
-    "status": { "enum": ["published", "hidden", "draft"], "default": "published", "description": "published=一覧に出す / hidden=URLを知っている人だけ / draft=出さない（ZCC のプレビューだけ）" },
-    "name": { "type": "string", "minLength": 1, "maxLength": 60, "description": "製品名" },
-    "tagline": { "type": "string", "maxLength": 120, "description": "キャッチコピー" },
-    "summary": { "type": "string", "maxLength": 600, "description": "概要" },
-    "category": { "type": "string", "description": "categories.json の slug（例: eq）" },
-    "licenseProductId": { "type": ["string", "null"], "pattern": "^[0-9A-Z]{8}$", "description": "License の製品ID（例: ZAATQ001）。持っている人に「所有しています」を出す" },
-    "tags": { "type": "array", "uniqueItems": true, "items": { "enum": ["NEW", "BETA", "UPDATE", "COMING_SOON", "LIMITED"] }, "description": "手で付けるタグ。「セール」と「無料」は価格から自動で付く" },
-    "price": { "type": ["integer", "null"], "minimum": 0, "maximum": 10000000, "description": "通常価格（円）。0 なら「無料」タグが付く" },
+    "$schema": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "published",
+        "hidden",
+        "draft"
+      ],
+      "default": "published",
+      "description": "published=一覧に出す / hidden=URLを知っている人だけ / draft=出さない（ZCC のプレビューだけ）"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "製品名"
+    },
+    "tagline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "キャッチコピー"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "概要"
+    },
+    "category": {
+      "type": "string",
+      "description": "categories.json の slug（例: eq）"
+    },
+    "licenseProductId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9A-Z]{8}$",
+      "description": "License の製品ID（例: ZAATQ001）。持っている人に「所有しています」を出す"
+    },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "NEW",
+          "BETA",
+          "UPDATE",
+          "COMING_SOON",
+          "LIMITED"
+        ]
+      },
+      "description": "手で付けるタグ。「セール」と「無料」は価格から自動で付く"
+    },
+    "price": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 10000000,
+      "description": "通常価格（円）。0 なら「無料」タグが付く"
+    },
     "sale": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "price": { "type": "integer", "minimum": 0, "description": "セール価格（円）。通常価格より安く" },
-        "startsAt": { "$ref": "#/$defs/time" },
-        "endsAt": { "$ref": "#/$defs/time", "description": "書くと終了までのカウントダウンが出る" },
-        "label": { "type": "string", "maxLength": 40, "description": "セール名（例: 発売記念セール）" }
+        "price": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "セール価格（円）。通常価格より安く"
+        },
+        "startsAt": {
+          "$ref": "#/$defs/time"
+        },
+        "endsAt": {
+          "$ref": "#/$defs/time",
+          "description": "書くと終了までのカウントダウンが出る"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "セール名（例: 発売記念セール）"
+        }
       }
     },
-    "buyUrl": { "$ref": "#/$defs/link", "description": "購入リンク（Booth）。公開（published）には buyUrl か COMING_SOON タグが必要" },
-    "demoUrl": { "$ref": "#/$defs/link" },
-    "manualUrl": { "$ref": "#/$defs/link" },
-    "accent": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "description": "製品の色（例: #9B7BFF）" },
-    "visual": { "$ref": "#/$defs/visual" },
-    "hero": { "$ref": "#/$defs/image", "description": "メイン画像" },
-    "icon": { "$ref": "#/$defs/image", "description": "アイコン（一覧のカードと購入欄）" },
-    "formats": { "type": "array", "uniqueItems": true, "items": { "enum": ["VST3", "AU", "CLAP", "AAX", "LV2", "Standalone"] } },
-    "platforms": { "type": "array", "uniqueItems": true, "items": { "enum": ["Windows", "macOS", "Linux"] } },
-    "version": { "type": "string", "maxLength": 20 },
-    "releaseDate": { "type": "string", "pattern": "^(|\\d{4}-\\d{2}-\\d{2})$" },
-    "featured": { "type": "boolean", "description": "true の最初の製品がトップページの大きな見出しになる" },
-    "order": { "type": "integer", "description": "並び順（小さいほど先）" },
-    "seoDescription": { "type": "string", "maxLength": 200, "description": "検索結果に出る説明" },
-    "sections": { "type": "array", "maxItems": 30, "items": { "$ref": "#/$defs/section" }, "description": "ページの中身。上から順に並ぶ" }
+    "buyUrl": {
+      "$ref": "#/$defs/link",
+      "description": "購入リンク（Booth）。公開（published）には buyUrl か COMING_SOON タグが必要"
+    },
+    "demoUrl": {
+      "$ref": "#/$defs/link"
+    },
+    "manualUrl": {
+      "$ref": "#/$defs/link"
+    },
+    "accent": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "製品の色（例: #9B7BFF）"
+    },
+    "visual": {
+      "$ref": "#/$defs/visual"
+    },
+    "hero": {
+      "$ref": "#/$defs/image",
+      "description": "メイン画像"
+    },
+    "icon": {
+      "$ref": "#/$defs/image",
+      "description": "アイコン（一覧のカードと購入欄）"
+    },
+    "formats": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "VST3",
+          "AU",
+          "CLAP",
+          "AAX",
+          "LV2",
+          "Standalone"
+        ]
+      }
+    },
+    "platforms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ]
+      }
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "releaseDate": {
+      "type": "string",
+      "pattern": "^(|\\d{4}-\\d{2}-\\d{2})$"
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "true の最初の製品がトップページの大きな見出しになる"
+    },
+    "order": {
+      "type": "integer",
+      "description": "並び順（小さいほど先）"
+    },
+    "seoDescription": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "検索結果に出る説明"
+    },
+    "sections": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/section"
+      },
+      "description": "ページの中身。上から順に並ぶ"
+    }
   }
 }
