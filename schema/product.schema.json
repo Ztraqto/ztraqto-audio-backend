@@ -474,6 +474,7 @@
                         "phase",
                         "languages",
                         "performance",
+                        "sketch",
                         "outro"
                       ],
                       "description": "title=タイトル（サムネイルの絵に caption を名前、body をサブタイトルとして描く。最初に置く） / arch=フローティングアーチ / dynamics=アーチ外側のダイナミクス / resonance=レゾナンス抑制のアーチと点線 / multi=複数バンドのアーチ / tabs=インスタンスのタブと重ね表示 / peaks=ピークのラベル / pick=つまんで下げる / bands=64バンド / phase=位相モード / languages=6言語の切り替え / performance=CPU の実測値 / outro=締め（caption を名前、body を下に描く）。arch→dynamics→resonance と続けると、同じバンドのまま切れ目なくつながる"
