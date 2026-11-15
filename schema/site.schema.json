@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ztraqto Audio サイト設定（site.json）",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "announcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "ページ上部のお知らせ帯",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "text": { "type": "string", "maxLength": 120 },
+        "url": { "type": "string", "description": "サイト内のパス（/p/athena-qx）か https の booth.pm / ztraqto.com のURL。空ならリンクなし" },
+        "startsAt": { "type": ["string", "null"], "description": "\"2026-12-01T00:00:00+09:00\"。時差なしなら日本時間" },
+        "endsAt": { "type": ["string", "null"] }
+      }
+    },
+    "home": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eyebrow": { "type": "string", "maxLength": 40 },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 120, "description": "トップページの一文（スクロールで文字が光る）" },
+        "statementBody": { "type": "string", "maxLength": 400 }
+      }
+    }
+  }
+}

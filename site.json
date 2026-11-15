@@ -1,0 +1,15 @@
+{
+  "$schema": "./schema/site.schema.json",
+  "announcement": {
+    "enabled": false,
+    "text": "",
+    "url": "",
+    "startsAt": null,
+    "endsAt": null
+  },
+  "home": {
+    "eyebrow": "Ztraqto Audio",
+    "statement": "音の、その先へ。",
+    "statementBody": "ミックスの判断を速く、確かにする。Ztraqto Audio は、聴こえ方から設計したプラグインをつくっています。"
+  }
+}

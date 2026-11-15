@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ztraqto Audio カテゴリ（categories.json）",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["categories"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "categories": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "name"],
+        "properties": {
+          "slug": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$", "description": "URL名（/products?category=<slug>）。製品の category に書く値" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "description": { "type": "string", "maxLength": 200 },
+          "order": { "type": "integer", "description": "並び順（小さいほど先）" }
+        }
+      }
+    }
+  }
+}

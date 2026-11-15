@@ -1,0 +1,160 @@
+{
+  "$schema": "../schema/product.schema.json",
+  "status": "hidden",
+  "name": "Athena-QX",
+  "tagline": "64バンドの、考えるイコライザー。",
+  "summary": "バンドごとにダイナミクスとレゾナンス抑制を持つ、64バンドのイコライザー。ピークを見つけ、つまみ、整えるまでを、ひとつの画面で。",
+  "category": "eq",
+  "licenseProductId": "ZAATQ001",
+  "tags": [
+    "NEW",
+    "COMING_SOON"
+  ],
+  "price": null,
+  "buyUrl": "",
+  "accent": "#9B7BFF",
+  "visual": "spectrum",
+  "hero": "images/athena-qx/hero.webp",
+  "formats": [
+    "VST3"
+  ],
+  "platforms": [
+    "Windows",
+    "macOS"
+  ],
+  "version": "1.0.0",
+  "releaseDate": "",
+  "featured": true,
+  "order": 10,
+  "seoDescription": "Athena-QX は 64 バンドの EQ。バンドごとのダイナミクスとレゾナンス抑制、ピーク・ピック、3種類の位相モード。",
+  "sections": [
+    {
+      "type": "statement",
+      "heading": "64バンド。それぞれが、考えるEQ。",
+      "body": "ただ削る・足すだけのEQではありません。バンドごとにダイナミクス、スペクトラル・ダイナミクス、レゾナンス抑制を持ち、音が変わる瞬間にだけ働きます。"
+    },
+    {
+      "type": "stats",
+      "heading": "",
+      "items": [
+        {
+          "value": "64",
+          "unit": "バンド",
+          "label": "同時に使えるバンド"
+        },
+        {
+          "value": "11",
+          "unit": "形状",
+          "label": "ベル、シェルフ、カット、ノッチ ほか"
+        },
+        {
+          "value": "3",
+          "unit": "位相",
+          "label": "最小位相・アナログ位相・リニア位相"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "Resonance",
+      "heading": "耳に刺さるピークだけを、その場で。",
+      "body": "バンドごとのレゾナンス抑制が、指定した範囲で突き出たピークだけを追いかけて抑えます。ボーカルの刺さり、ギターの箱鳴り、ミックスのこもりを、音の芯を残したまま整えます。",
+      "visual": "spectrum",
+      "align": "left",
+      "image": "images/athena-qx/resonance.webp"
+    },
+    {
+      "type": "feature",
+      "eyebrow": "Peak Pick",
+      "heading": "見えたピークを、つまんで直す。",
+      "body": "スペクトラムの上で止まると、目立つピークに周波数と音名のラベルが出ます。点をつかんで上下に動かせば、その幅に合ったベルが作られます。探す時間を、聴く時間に。",
+      "visual": "eq",
+      "align": "right",
+      "image": "images/athena-qx/peak-pick.webp"
+    },
+    {
+      "type": "highlights",
+      "heading": "ミックスの判断を、速く。",
+      "items": [
+        {
+          "title": "スペクトラム・フィット",
+          "body": "参照の音との差を測り、バンドで自動的に補正します。"
+        },
+        {
+          "title": "カーブ・スケッチ",
+          "body": "グラフに描いた曲線に、バンドを当てはめます。"
+        },
+        {
+          "title": "ダイナミックEQ",
+          "body": "閾値を超えたときだけ働く、時間領域とスペクトラルの2方式。"
+        },
+        {
+          "title": "タブと重ね表示",
+          "body": "同じプロジェクトの他のトラックの Athena-QX を、この画面で編集・比較できます。"
+        },
+        {
+          "title": "マスキング表示",
+          "body": "サイドチェーンとぶつかる帯域を見て、すぐに譲り合いを作れます。"
+        },
+        {
+          "title": "ゲインマッチ",
+          "body": "EQ による音量の変化を打ち消して、音色だけを比べられます。"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "Phase",
+      "heading": "位相も、選べる。",
+      "body": "レイテンシのない最小位相、自然な位相補正のアナログ位相、位相を崩さないリニア位相。パラメータを動かしても途切れない切り替えで、トラックにもマスターにも。",
+      "visual": "wave",
+      "align": "left"
+    },
+    {
+      "type": "gallery",
+      "heading": "画面",
+      "images": [
+        "images/athena-qx/hero.webp",
+        "images/athena-qx/band-panel.webp",
+        "images/athena-qx/multi-band.webp",
+        "images/athena-qx/peak-pick.webp",
+        "images/athena-qx/resonance.webp"
+      ]
+    },
+    {
+      "type": "specs",
+      "heading": "仕様",
+      "rows": [
+        {
+          "label": "形式",
+          "value": "VST3（今後 AU・CLAP・AAX・LV2 に対応予定）"
+        },
+        {
+          "label": "対応OS",
+          "value": "Windows（x64）、macOS"
+        },
+        {
+          "label": "バンド",
+          "value": "64（11形状、バンドごとにダイナミクス・スペクトラル・ダイナミクス・レゾナンス抑制）"
+        },
+        {
+          "label": "処理モード",
+          "value": "最小位相、アナログ位相、リニア位相"
+        },
+        {
+          "label": "ライセンス",
+          "value": "1ライセンスで3台まで（オンライン認証・オフライン認証）"
+        },
+        {
+          "label": "体験版",
+          "value": "すべての機能を試せます（30〜60秒ごとに3秒の無音、書き出しは無音）"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Athena-QX を、あなたのミックスに。",
+      "body": "体験版で、すべての機能を試せます。"
+    }
+  ]
+}

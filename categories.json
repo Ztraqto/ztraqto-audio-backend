@@ -1,0 +1,23 @@
+{
+  "$schema": "./schema/categories.schema.json",
+  "categories": [
+    {
+      "slug": "eq",
+      "name": "EQ・フィルター",
+      "description": "音色を整えるイコライザーとフィルター",
+      "order": 10
+    },
+    {
+      "slug": "dynamics",
+      "name": "ダイナミクス",
+      "description": "コンプレッサー、リミッター、ディエッサー",
+      "order": 20
+    },
+    {
+      "slug": "utility",
+      "name": "ユーティリティ",
+      "description": "メーター、アナライザー、便利な道具",
+      "order": 30
+    }
+  ]
+}
