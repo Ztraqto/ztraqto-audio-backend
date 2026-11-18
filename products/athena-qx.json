@@ -1,6 +1,6 @@
 {
   "$schema": "../schema/product.schema.json",
-  "status": "hidden",
+  "status": "published",
   "name": "Athena-QX",
   "tagline": "次世代の標準EQ",
   "summary": "バンドごとにダイナミクスとレゾナンス抑制を持つ、64バンドのイコライザー。ピークを見つけ、つまみ、整えるまでを、ひとつの画面で。",
