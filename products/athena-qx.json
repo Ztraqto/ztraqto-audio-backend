@@ -10,7 +10,7 @@
     "NEW",
     "COMING_SOON"
   ],
-  "price": 11450,
+  "price": 8700,
   "buyUrl": "",
   "accent": "#9B7BFF",
   "visual": "spectrum",
@@ -154,7 +154,7 @@
     {
       "type": "cta",
       "heading": "Athena-QX を、あなたの標準に。",
-      "body": "いまならイントロセールで 6,280 円（通常 11,450 円）。体験版で、すべての機能を試せます。",
+      "body": "いまならイントロセールで 3,870 円（通常 8,700 円）。体験版で、すべての機能を試せます。",
       "more": "仕様と比較を見る"
     },
     {
@@ -481,7 +481,7 @@
     }
   ],
   "sale": {
-    "price": 6280,
+    "price": 3870,
     "label": "イントロセール"
   },
   "manualUrl": "https://audio.ztraqto.com/manual/install"

@@ -2,7 +2,7 @@
   "$schema": "./schema/site.schema.json",
   "announcement": {
     "enabled": true,
-    "text": "Athena-QX のイントロセールを開催中です。6,280 円（通常 11,450 円）",
+    "text": "Athena-QX のイントロセールを開催中です。3,870 円（通常 8,700 円）",
     "url": "/p/athena-qx",
     "startsAt": null,
     "endsAt": null
