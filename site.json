@@ -1,9 +1,9 @@
 {
   "$schema": "./schema/site.schema.json",
   "announcement": {
-    "enabled": false,
-    "text": "",
-    "url": "",
+    "enabled": true,
+    "text": "イントロセール開催中 — Athena-QX が 45% OFF の 6,280 円（通常 11,450 円）",
+    "url": "/p/athena-qx",
     "startsAt": null,
     "endsAt": null
   },

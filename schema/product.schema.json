@@ -13,8 +13,8 @@
     },
     "image": {
       "type": "string",
-      "description": "images/ から始まるリポジトリ内のパス（例: images/athena-qx/hero.webp）か、raw.githubusercontent.com / cdn.jsdelivr.net / booth.pximg.net の https URL。PNG・JPEG・WebP・AVIF・GIF（SVG は不可）",
-      "pattern": "^(images/[A-Za-z0-9._/-]+\\.(png|jpe?g|webp|avif|gif)|https://(raw\\.githubusercontent\\.com|cdn\\.jsdelivr\\.net|booth\\.pximg\\.net)/.+)$"
+      "description": "images/ から始まるリポジトリ内のパス（例: images/athena-qx/hero.webp）。外部の画像URLは使えません（2026-11-16）。PNG・JPEG・WebP・AVIF・GIF（SVG は不可）",
+      "pattern": "^images/[A-Za-z0-9._/-]+\\.(png|jpe?g|webp|avif|gif)$"
     },
     "link": {
       "type": "string",

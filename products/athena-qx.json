@@ -10,7 +10,7 @@
     "NEW",
     "COMING_SOON"
   ],
-  "price": 7980,
+  "price": 11450,
   "buyUrl": "",
   "accent": "#9B7BFF",
   "visual": "spectrum",
@@ -20,8 +20,7 @@
   ],
   "platforms": [
     "Windows",
-    "macOS",
-    "Linux"
+    "macOS"
   ],
   "version": "1.0.0",
   "releaseDate": "",
@@ -155,20 +154,22 @@
     {
       "type": "cta",
       "heading": "Athena-QX を、あなたの標準に。",
-      "body": "イントロセール中は 3,980 円（通常 7,980 円）。体験版で、すべての機能を試せます。",
+      "body": "いまならイントロセールで 6,280 円（通常 11,450 円・45% OFF）。体験版で、すべての機能を試せます。",
       "more": "仕様と比較を見る"
     },
     {
       "type": "offer",
-      "eyebrow": "macOS・Linux",
+      "eyebrow": "macOS",
       "heading": "Contributor 版は、無料。",
-      "body": "macOS と Linux 向けには Contributor 版があります。申し込みは要りません。体験版のデモモードで動作を確かめ、決まった形式の報告書を Ztraqto の Discord サーバーに送ってください。報告書の内容を確認できたら、製品を無料で受け取れるギフトコードをお渡しします。",
+      "body": "macOS 向けには Contributor 版があります。申し込みは要りません。体験版のデモモードで動作を確かめ、Google フォームから「診断レポート（PDF）」と「動作の映像」、あなたの Discord ユーザー名を送ってください。内容を確認できたら、製品を無料で受け取れるギフトコードを Discord でお送りします。",
       "items": [
-        "先着順です。macOS・Linux の環境と DAW の組み合わせごとに、確かめたい枠があります。",
+        "先着順です。macOS の環境と DAW の組み合わせごとに、確かめたい枠があります。",
+        "診断レポートは、プラグインの「設定 → 診断レポート → PDF を書き出す」で作れます。",
+        "ギフトコードは Discord で送るため、Ztraqto の Discord サーバーへの参加と、Discord ユーザー名の記入が必須です。",
         "おひとりで多くの環境や DAW を確かめていただいた場合は、その分の枠が埋まります。",
         "すべての動作確認が済んだ時点で、Contributor 版は終わります。それまでは無料です。"
       ],
-      "note": "報告書の形式は、決まりしだい Discord サーバーとこのページでお知らせします。",
+      "note": "報告用フォームの URL は Discord サーバーでお知らせします。",
       "linkLabel": "Discord サーバーに参加",
       "url": "https://discord.gg/J5648azNNp"
     },
@@ -185,7 +186,7 @@
             },
             {
               "label": "対応OS",
-              "value": "Windows（x64）、macOS、Linux（macOS と Linux は Contributor 版で動作を確認中）"
+              "value": "Windows（x64）、macOS（macOS は Contributor 版で動作を確認中）"
             },
             {
               "label": "チャンネル",
@@ -460,7 +461,7 @@
             {
               "label": "OS",
               "values": [
-                "Windows / macOS / Linux",
+                "Windows / macOS",
                 "Windows / macOS（iPad 版あり）",
                 "Windows / macOS / Linux"
               ]
@@ -468,7 +469,7 @@
             {
               "label": "価格",
               "values": [
-                "7,980 円（イントロセール 3,980 円）",
+                "11,450 円（イントロセール 6,280 円）",
                 "有料",
                 "無料（オープンソース、AGPL-3.0）"
               ]
@@ -480,7 +481,8 @@
     }
   ],
   "sale": {
-    "price": 3980,
+    "price": 6280,
     "label": "イントロセール"
-  }
+  },
+  "manualUrl": "https://audio.ztraqto.com/manual/install"
 }
